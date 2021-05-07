@@ -18,7 +18,13 @@
     ],
     "ios": {
       "bundleIdentifier": "com.lucas.travelfood",
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "392843370538-mck0nu0voe8hjhomaf0b8dh8f7cpo11l.apps.googleusercontent.com"
+        }
+      },
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {

@@ -6,6 +6,7 @@ import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 
 import RecipesNavigator from './recipesNavigator';
 import IngredientsNavigator from './ingredientsNavigator';
+import LoginNavigator from './loginNavigator';
 
 const Stack = createStackNavigator()
 
@@ -17,6 +18,7 @@ function AppNavigation() {
             <Tabs.Navigator>
                 <Tabs.Screen name="Recettes" component={RecipesNavigator}/>
                 <Tabs.Screen name="Ingredients" component={IngredientsNavigator}/>
+                <Tabs.Screen name="Login" component={LoginNavigator}/>
             </Tabs.Navigator>
           </NavigationContainer>
     )

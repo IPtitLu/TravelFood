@@ -2,29 +2,32 @@ import React, {useEffect} from 'react';
 import {View, Image, Text, StyleSheet, Button, ScrollView} from 'react-native';
 import {fetchSelectedRecipes} from '../../../api/recipes'
 import {useDispatch, useSelector} from 'react-redux';
-import {getSelectedRecipe} from '../../../redux/selectors';
+import {getSelectedRecipes} from '../../../redux/selectors';
 
 const RecipesDetailScreen = ({route, navigation}) => {
 
     const {id} = route.params
     const dispatch = useDispatch();
 
-    const recipe = useSelector(getSelectedRecipe);
+    const recipe = useSelector(getSelectedRecipes);
 
     useEffect(() => {
         fetchSelectedRecipes(dispatch, id)
     }, [])
 
-        console.log("test recettes : " + recipe.image);
+        console.log("test recettes : " + recipe.name);
+
+        const img = require('../../../../assets/images/recipes/ramens.jpeg')
 
     return (
         <ScrollView style={styles.container}>
             <View style={styles.containerImage}>
-                <Image source={{uri: recipe.image}} resizeMode="cover" style={styles.image}></Image>
+                <Image source={img} resizeMode="cover" style={styles.image}></Image>
             </View>
-            <Text style={styles.title}>{recipe.title}</Text>
+            <Text style={styles.name}>{recipe.name}</Text>
+            <Text style={styles.price}>{recipe.price}</Text>
             <View style={styles.containerIngredients}>
-                <Text style={styles.ingredientsTitle}> List of ingredients for this recipe : </Text>
+                <Text style={styles.ingredientsTitle}> List des ingrédients de ce plat : </Text>
                 {/*
                 {recipe.extendedIngredients.map(ing => {
                     return <Text style={styles.ing}>{ing.name}</Text>
@@ -46,7 +49,13 @@ const styles = StyleSheet.create({
     image: {
         height: 200,
     },
-    title: {
+    name: {
+        fontWeight: "bold",
+        fontSize: 26,
+        textAlign:"center",
+        marginVertical: 40,
+    },
+    price: {
         fontWeight: "bold",
         fontSize: 26,
         textAlign:"center",
@@ -63,7 +72,9 @@ const styles = StyleSheet.create({
     },
     ingredientsTitle: {
         fontWeight: "bold",
-        marginBottom: 20
+        marginBottom: 20,
+        marginTop: 20,
+        alignSelf: "center"
     },
     ing: {
         textAlign: 'left',

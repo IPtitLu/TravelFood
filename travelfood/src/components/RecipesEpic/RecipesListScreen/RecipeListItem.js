@@ -5,8 +5,7 @@ const URL_IMAGE = "https://spoonacular.com/recipeImages/"
 
 const RecipeListItem = ({item, navigation}) => { 
 
-    console.log(" LE TEST ULTIME " + item.image)
-    const img = require('../../../../assets/images/recipes/boeuf.jpg')
+    const img = require('../../../../assets/images/recipes/sushi.jpeg')
     return (
         <TouchableOpacity 
                 onPress={() => {
@@ -15,9 +14,11 @@ const RecipeListItem = ({item, navigation}) => {
                     });
                 }}>
             <View style={styles.container}>
-                <Image source={{uri: item.image}} style={styles.image}></Image>
-                <Text style={styles.title}>{item.name}</Text>
-                <Text style={styles.price}>{item.price}</Text>
+                <Image source={img} style={styles.image}></Image>
+                <View>
+                    <Text style={styles.title}>{item.name}</Text>
+                    <Text style={styles.price}>{item.price}</Text>
+                </View>
             </View>
         </TouchableOpacity>
     )
