@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {View, Image, Text, StyleSheet, Button, ScrollView} from 'react-native';
-import {fetchSelectedRecipes} from '../../../api/recipes'
+import {fetchSelectedRecipes} from '../../../api/recipeSelected'
 import {useDispatch, useSelector} from 'react-redux';
 import {getSelectedRecipes} from '../../../redux/selectors';
 
@@ -15,7 +15,7 @@ const RecipesDetailScreen = ({route, navigation}) => {
         fetchSelectedRecipes(dispatch, id)
     }, [])
 
-        console.log("test recettes : " + recipe.name);
+        const recipeSelected = recipe[0];
 
         const img = require('../../../../assets/images/recipes/ramens.jpeg')
 
@@ -24,8 +24,8 @@ const RecipesDetailScreen = ({route, navigation}) => {
             <View style={styles.containerImage}>
                 <Image source={img} resizeMode="cover" style={styles.image}></Image>
             </View>
-            <Text style={styles.name}>{recipe.name}</Text>
-            <Text style={styles.price}>{recipe.price}</Text>
+            <Text style={styles.name}>{recipeSelected.name}</Text>
+            <Text style={styles.price}>{recipeSelected.price}€</Text>
             <View style={styles.containerIngredients}>
                 <Text style={styles.ingredientsTitle}> List des ingrédients de ce plat : </Text>
                 {/*

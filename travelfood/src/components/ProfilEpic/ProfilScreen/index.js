@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 const ProfileScreen = ({ route, navigation }) => {
   const { user } = route.params;
-  console.log("user from google", user);
+  console.log("Utilisateur : ", user);
   return (
     <View>
       <Text>Profile Screen</Text>

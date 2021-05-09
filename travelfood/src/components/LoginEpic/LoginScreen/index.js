@@ -13,11 +13,19 @@ import {
 } from "react-native";
 import "firebase/firestore";
 import firebaseLog from "../../../../firebase";
-import * as GoogleSignIn from 'expo-google-sign-in'
-
-
 class LoginScreen extends React.Component {
-  state = { email: '', password: '', errorMessage: '', loading: false };
+
+  constructor(props) {
+    super(props)
+
+    this.state = { 
+      email: '', 
+      password: '',
+      errorMessage: '',
+      loading: false 
+    };
+  }
+
   onLoginSuccess() {
     this.props.navigation.navigate('Profile');
   }
@@ -34,20 +42,28 @@ class LoginScreen extends React.Component {
     }
   }
 
-  async signInWithEmail() {
-    await firebaseLog
-      .auth()
-      .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(this.onLoginSuccess.bind(this))
-      .catch(error => {
-          let errorCode = error.code;
-          let errorMessage = error.message;
-          if (errorCode == 'auth/weak-password') {
-              this.onLoginFailure.bind(this)('Weak Password!');
-          } else {
-              this.onLoginFailure.bind(this)(errorMessage);
-          }
-      });
+  signInWithEmail = (email, password) => {
+
+    const email1 = email.value
+    const password1 = password.value
+
+    console.log("etat du formulaire : " + email1 + password1)
+      firebaseLog
+        .auth()
+        .signInWithEmailAndPassword(email1, password1)
+        //.then(this.onLoginSuccess.bind(this))
+        .then(function(user) {
+          console.log(user);
+        })
+        .catch(error => {
+            let errorCode = error.code;
+            let errorMessage = error.message;
+            if (errorCode == 'auth/weak-password') {
+                this.onLoginFailure.bind(this)('Weak Password!');
+            } else {
+                this.onLoginFailure.bind(this)(errorMessage);
+            }
+        });
   }
 
   render() {
@@ -60,7 +76,7 @@ class LoginScreen extends React.Component {
         <SafeAreaView style={{ flex: 1 }}>
           <KeyboardAvoidingView style={styles.container} behavior="padding">
             <Text style={{ fontSize: 32, fontWeight: "700", color: "gray" }}>
-              App Name
+              Espace de connexion
             </Text>
             <View style={styles.form}>
               <TextInput
@@ -71,10 +87,12 @@ class LoginScreen extends React.Component {
                 keyboardType="email-address"
                 textContentType="emailAddress"
                 value={this.state.email}
+                autoCapitalize='none'
                 onChangeText={email => this.setState({ email })}
               />
               <TextInput
                 style={styles.input}
+                autoCapitalize='none'
                 placeholder="Password"
                 placeholderTextColor="#B1B1B1"
                 returnKeyType="done"
@@ -84,6 +102,7 @@ class LoginScreen extends React.Component {
                 onChangeText={password => this.setState({ password })}
               />
             </View>
+
             {this.renderLoading()}
             <Text
               style={{
@@ -97,7 +116,7 @@ class LoginScreen extends React.Component {
             </Text>
             <TouchableOpacity
               style={{ width: '86%', marginTop: 10 }}
-              onPress={() => this.signInWithEmail()}>
+              onPress={() => this.signInWithEmail(this.state.email, this.state.password)}>
                   <Text>Sign In</Text>
             </TouchableOpacity>
 

@@ -13,6 +13,7 @@ export const fetchIngredients = async (dispatch) => {
                                 id: doc.data().id,
                                 name: doc.data().name,
                                 price: doc.data().price,
+                                nutriscore: doc.data().nutriscore,
                             })
                             dispatch(fetchIngredientsAction(ingredients))
                         });

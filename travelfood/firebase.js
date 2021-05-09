@@ -19,3 +19,5 @@ try {
 }
 
 export const fs = firebase.firestore();
+
+export const firebaseLog = firebase;

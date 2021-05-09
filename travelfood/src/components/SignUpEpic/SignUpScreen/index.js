@@ -15,7 +15,7 @@ import 'firebase/firestore';
 import firebase from 'firebase';
 import * as GoogleSignIn from 'expo-google-sign-in'
 class SignUpScreen extends React.Component {
-  state = { displayName: '', email: '', password: '', errorMessage: '', loading: false };
+  state = {email: '', password: '', errorMessage: '', loading: false };
   onLoginSuccess() {
     this.props.navigation.navigate('App');
   }
@@ -32,9 +32,11 @@ class SignUpScreen extends React.Component {
     }
   }
   async signInWithEmail() {
+    const email1 = this.state.email.value
+    const password1 = this.state.email.value
     await firebase
       .auth()
-      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .createUserWithEmailAndPassword(email1, password)
       .then(this.onLoginSuccess.bind(this))
       .catch(error => {
           let errorCode = error.code;
@@ -56,18 +58,9 @@ class SignUpScreen extends React.Component {
         <SafeAreaView style={{ flex: 1 }}>
           <KeyboardAvoidingView style={styles.container} behavior="padding">
             <Text style={{ fontSize: 32, fontWeight: '700', color: 'gray' }}>
-              App Name
+              Espace d'inscription
             </Text>
             <View style={styles.form}>
-              <TextInput
-                style={styles.input}
-                placeholder="Name"
-                placeholderTextColor="#B1B1B1"
-                returnKeyType="next"
-                textContentType="name"
-                value={this.state.displayName}
-                onChangeText={displayName => this.setState({ displayName })}
-              />
               <TextInput
                 style={styles.input}
                 placeholder="Email"
@@ -77,6 +70,7 @@ class SignUpScreen extends React.Component {
                 textContentType="emailAddress"
                 value={this.state.email}
                 onChangeText={email => this.setState({ email })}
+                autoCapitalize='none'
               />
               <TextInput
                 style={styles.input}
@@ -87,6 +81,7 @@ class SignUpScreen extends React.Component {
                 secureTextEntry={true}
                 value={this.state.password}
                 onChangeText={password => this.setState({ password })}
+                autoCapitalize='none'
               />
             </View>
             {this.renderLoading()}

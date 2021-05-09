@@ -1,3 +1,4 @@
+import e from 'cors';
 import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 
@@ -15,9 +16,9 @@ const RecipeListItem = ({item, navigation}) => {
                 }}>
             <View style={styles.container}>
                 <Image source={img} style={styles.image}></Image>
-                <View>
+                <View style={styles.content}>
                     <Text style={styles.title}>{item.name}</Text>
-                    <Text style={styles.price}>{item.price}</Text>
+                    <Text style={styles.price}>{item.price}€</Text>
                 </View>
             </View>
         </TouchableOpacity>
@@ -39,11 +40,14 @@ const styles = StyleSheet.create({
         height: 100,
         borderRadius: 50
     },
+    content:{
+        flexDirection: "column",
+        alignContent: "center",
+    },
     title: {
         fontSize: 20,
         fontWeight: "bold",
         marginLeft: 25,
-        width: 300
     },
     price: {
         fontSize: 20,
