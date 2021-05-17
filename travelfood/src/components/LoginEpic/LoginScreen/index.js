@@ -140,7 +140,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    marginTop : 200,
   },
   form: {
     width: "86%",
