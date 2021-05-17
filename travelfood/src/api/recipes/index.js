@@ -3,8 +3,6 @@ import {fetchRecipesAction} from '../../redux/actions';
 import {fs} from '../../../firebase';
 
 export const fetchRecipes = async (dispatch) => {
-
-        
         
         fs.collection("recipes").get().then((querySnapshot) => {
             const recipes = []

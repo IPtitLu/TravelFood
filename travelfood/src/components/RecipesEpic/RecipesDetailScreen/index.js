@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Image, Text, StyleSheet, Button, ScrollView} from 'react-native';
 import {fetchSelectedRecipes} from '../../../api/recipeSelected'
 import {useDispatch, useSelector} from 'react-redux';
@@ -7,25 +7,27 @@ import {getSelectedRecipes} from '../../../redux/selectors';
 const RecipesDetailScreen = ({route, navigation}) => {
 
     const {id} = route.params
+    
     const dispatch = useDispatch();
+    const recipes = useSelector(getSelectedRecipes);
 
-    const recipe = useSelector(getSelectedRecipes);
 
     useEffect(() => {
+        console.log("Use effect called")
         fetchSelectedRecipes(dispatch, id)
     }, [])
 
-        const recipeSelected = recipe[0];
+    const recipeSelected = recipes[0];
 
-        const img = require('../../../../assets/images/recipes/ramens.jpeg')
+    const img = require('../../../../assets/images/recipes/ramens.jpeg')
 
     return (
         <ScrollView style={styles.container}>
             <View style={styles.containerImage}>
                 <Image source={img} resizeMode="cover" style={styles.image}></Image>
             </View>
-            <Text style={styles.name}>{recipeSelected.name}</Text>
-            <Text style={styles.price}>{recipeSelected.price}€</Text>
+            <Text style={styles.name}>{recipeSelected && recipeSelected.name}</Text>
+            <Text style={styles.price}>{recipeSelected && recipeSelected.price}€</Text>
             <View style={styles.containerIngredients}>
                 <Text style={styles.ingredientsTitle}> List des ingrédients de ce plat : </Text>
                 {/*

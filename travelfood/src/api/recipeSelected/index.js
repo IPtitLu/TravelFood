@@ -2,9 +2,11 @@ import {fetchSelectedRecipesAction} from '../../redux/actions';
 
 import {fs} from '../../../firebase';
 
-export const fetchSelectedRecipes = async (dispatch, recipeId) => {
+export const fetchSelectedRecipes = async (dispatch, id) => {
+
+        const idRecipe = id.toString()
         
-        fs.collection("recipes").doc(recipeId.toString()).get().then(doc => {
+        fs.collection("recipes").doc(idRecipe).get().then(doc => {
 
             const recipeSelected = [];
             if (!doc.exists) {
@@ -17,7 +19,8 @@ export const fetchSelectedRecipes = async (dispatch, recipeId) => {
                     restaurant: doc.data().restaurant
                 });
 
-                console.log("recette selectionnée : ", recipeSelected)
+                console.log("recette selectionnee dans l'api : " , recipeSelected)
+
                 dispatch(fetchSelectedRecipesAction(recipeSelected))
             }
         });

@@ -12,6 +12,7 @@ const IngredientsScreen = ({navigation}) => {
     const ingredients = useSelector(getIngredients);
 
     useEffect(() => {
+        console.log('FacetTreeView: useEffect entered');
         fetchIngredients(dispatch)
     }, [])
 

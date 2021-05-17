@@ -11,7 +11,6 @@ const RecipesListScreen = ({navigation}) => {
 
     const dispatch = useDispatch();
     const recipes = useSelector(getRecipes);
-    console.log("recettes 1 : " + recipes)
 
     useEffect(() => {
         fetchRecipes(dispatch)
