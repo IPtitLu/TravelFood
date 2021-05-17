@@ -1,12 +1,14 @@
 import e from 'cors';
 import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import ImgRender from './imgRender';
 
 const URL_IMAGE = "https://spoonacular.com/recipeImages/"
 
 const RecipeListItem = ({item, navigation}) => { 
 
     const img = require('../../../../assets/images/recipes/sushi.jpeg')
+
     return (
         <TouchableOpacity 
                 onPress={() => {
@@ -15,7 +17,7 @@ const RecipeListItem = ({item, navigation}) => {
                     });
                 }}>
             <View style={styles.container}>
-                <Image source={img} style={styles.image}></Image>
+                <ImgRender recipeImg={item.img}/>
                 <View style={styles.content}>
                     <Text style={styles.title}>{item.name}</Text>
                     <Text style={styles.price}>{item.price}€</Text>

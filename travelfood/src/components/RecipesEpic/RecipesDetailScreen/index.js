@@ -3,6 +3,7 @@ import {View, Image, Text, StyleSheet, Button, ScrollView} from 'react-native';
 import {fetchSelectedRecipes} from '../../../api/recipeSelected'
 import {useDispatch, useSelector} from 'react-redux';
 import {getSelectedRecipes} from '../../../redux/selectors';
+import ImgRender from './imgRender';
 
 const RecipesDetailScreen = ({route, navigation}) => {
 
@@ -13,19 +14,15 @@ const RecipesDetailScreen = ({route, navigation}) => {
 
 
     useEffect(() => {
-        console.log("Use effect called")
         fetchSelectedRecipes(dispatch, id)
     }, [])
 
     const recipeSelected = recipes[0];
 
-    const img = require('../../../../assets/images/recipes/ramens.jpeg')
-
+    
     return (
         <ScrollView style={styles.container}>
-            <View style={styles.containerImage}>
-                <Image source={img} resizeMode="cover" style={styles.image}></Image>
-            </View>
+            <ImgRender recipeImg={recipeSelected && recipeSelected.img}/>
             <Text style={styles.name}>{recipeSelected && recipeSelected.name}</Text>
             <Text style={styles.price}>{recipeSelected && recipeSelected.price}€</Text>
             <View style={styles.containerIngredients}>

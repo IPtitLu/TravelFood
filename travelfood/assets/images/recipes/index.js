@@ -1,0 +1,11 @@
+export const boeuf = require('./boeuf.jpg'); 
+export const burger = require('./burger.jpg'); 
+export const pasta = require('./pasta.jpg'); 
+export const cake = require('./cake.jpg'); 
+export const pancake = require('./pancake.jpg'); 
+export const ramens = require('./ramens.jpeg'); 
+export const ratatouille = require('./ratatouille.jpeg'); 
+export const salad = require('./salad.jpg'); 
+export const saumon = require('./saumon.jpg'); 
+export const soupe = require('./soupe.jpg'); 
+export const sushi = require('./sushi.jpeg'); 

@@ -16,10 +16,9 @@ export const fetchSelectedRecipes = async (dispatch, id) => {
                     name: doc.data().name,
                     price: doc.data().price,
                     type: doc.data().type,
-                    restaurant: doc.data().restaurant
+                    restaurant: doc.data().restaurant,
+                    img: doc.data().img,
                 });
-
-                console.log("recette selectionnee dans l'api : " , recipeSelected)
 
                 dispatch(fetchSelectedRecipesAction(recipeSelected))
             }

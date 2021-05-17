@@ -13,7 +13,7 @@ export const fetchRecipes = async (dispatch) => {
                                 price: doc.data().price,
                                 restaurant: doc.data().restaurant,
                                 type: doc.data().type,
-                                image: doc.data().image,
+                                img: doc.data().img,
                             })
                             dispatch(fetchRecipesAction(recipes))
                         });
