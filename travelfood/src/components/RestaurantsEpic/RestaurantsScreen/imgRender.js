@@ -20,21 +20,6 @@ export default function ImgRender({restaurantImg}) {
     
 
     return(restaurantsPath)
-
-    /* 
-    if (recipeName === boeuf) {
-            console.log(ImgId)
-            return(
-                <View style={styles.containerImage}>
-                    <Image source={IMAGENAME} resizeMode="cover" style={styles.image}></Image>
-                </View>
-            ); 
-    } else {
-            return(
-            <View><Text>False</Text></View>
-            )
-    }
-    */
 }
 
 const styles = StyleSheet.create({

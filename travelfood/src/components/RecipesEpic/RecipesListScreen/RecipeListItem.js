@@ -3,11 +3,7 @@ import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import ImgRender from './imgRender';
 
-const URL_IMAGE = "https://spoonacular.com/recipeImages/"
-
 const RecipeListItem = ({item, navigation}) => { 
-
-    const img = require('../../../../assets/images/recipes/sushi.jpeg')
 
     return (
         <TouchableOpacity 
@@ -45,6 +41,7 @@ const styles = StyleSheet.create({
     content:{
         flexDirection: "column",
         alignContent: "center",
+        justifyContent: "center"
     },
     title: {
         fontSize: 20,

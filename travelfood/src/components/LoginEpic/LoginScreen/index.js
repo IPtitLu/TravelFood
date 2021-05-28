@@ -47,7 +47,6 @@ class LoginScreen extends React.Component {
     const email1 = email.value
     const password1 = password.value
 
-    console.log("etat du formulaire : " + email1 + password1)
       firebaseLog
         .auth()
         .signInWithEmailAndPassword(email1, password1)

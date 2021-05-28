@@ -8,8 +8,6 @@ export const fetchSelectedRestaurant = async (dispatch, id) => {
 
         
         fs.collection("restaurants").doc(idRestaurant).get().then(doc => {
-
-        console.log("selected restaurant api : ", idRestaurant)
         
             const restaurantSelected = [];
             if (!doc.exists) {
@@ -19,9 +17,12 @@ export const fetchSelectedRestaurant = async (dispatch, id) => {
                     name: doc.data().name,
                     city: doc.data().city,
                     img: doc.data().img,
+                    type: doc.data().type
                 });
 
-                console.log("result of api : ", restaurantSelected)
+                const test = []
+
+                test.push(doc.data().recipes)
 
                 dispatch(fetchSelectedRestaurantAction(restaurantSelected))
             }

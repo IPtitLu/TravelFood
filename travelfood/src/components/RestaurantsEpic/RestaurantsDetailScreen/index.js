@@ -4,6 +4,7 @@ import {fetchSelectedRestaurant} from '../../../api/restaurantSelected'
 import {useDispatch, useSelector} from 'react-redux';
 import {getSelectedRestaurant} from '../../../redux/selectors';
 import ImgRender from './imgRender';
+import RecipesOfRestaurant from './recipesOfRestaurant';
 
 const RestaurantsDetailScreen = ({route, navigation}) => {
 
@@ -18,20 +19,15 @@ const RestaurantsDetailScreen = ({route, navigation}) => {
     }, [])
 
     const restaurantSelected = restaurant[0];
-
     
     return (
         <ScrollView style={styles.container}>
             <ImgRender restaurantImg={restaurantSelected && restaurantSelected.img}/>
             <Text style={styles.name}>{restaurantSelected && restaurantSelected.name}</Text>
             <Text style={styles.city}>{restaurantSelected && restaurantSelected.city}</Text>
-            <View style={styles.containerIngredients}>
-                <Text style={styles.ingredientsTitle}> List des plats de ce restaurant : </Text>
-                {/*
-                {recipe.extendedIngredients.map(ing => {
-                    return <Text style={styles.ing}>{ing.name}</Text>
-                })}
-                */}
+            <View style={styles.containerRecipes}>
+                <Text style={styles.recipesTitle}> List des plats de ce restaurant : </Text>
+                <RecipesOfRestaurant type={restaurantSelected && restaurantSelected.type}/>
             </View>
         </ScrollView>
     );
@@ -59,24 +55,18 @@ const styles = StyleSheet.create({
         textAlign:"center",
         marginVertical: 40,
     },
-    containerIngredients: {
+    containerRecipes: {
         display: "flex",
         justifyContent: "center",
         flex: 3,
         borderTopWidth: 0.2,
         borderColor: "grey",
-        marginHorizontal: 50,
-
     },
-    ingredientsTitle: {
+    recipesTitle: {
         fontWeight: "bold",
         marginBottom: 20,
         marginTop: 20,
         alignSelf: "center"
-    },
-    ing: {
-        textAlign: 'left',
-        paddingBottom: 10,
     }
 })
 
